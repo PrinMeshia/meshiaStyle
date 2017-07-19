@@ -1,0 +1,73 @@
+// ----
+// Sass (v3.4.21)
+// Compass (v1.0.3)
+// ----
+
+$gCol: 12;
+$gWidth: 65em;
+
+$breakpoint-small: "only screen and (min-width: 20em)";
+$breakpoint-medium: "only screen and (min-width: 30em)";
+
+
+@mixin border-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+    }
+    
+
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+ 
+    @include border-box;
+ 
+    }
+ %clearfix {
+    *zoom: 1;
+    &:before, 
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+img {
+    width: auto;
+    max-width: 100%;
+    height: auto !important; 
+    }   
+ 
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    }  
+ 
+.wrapper,
+.row {
+    @extend %clearfix;
+}
+[class*='col-'] {
+    float: left;
+    padding: 1em;
+    width: 100%;
+    min-height: 1px; 
+    } 
+    
+  @media #{$breakpoint-medium} {
+        .wrapper {      
+        width: 95%;
+        max-width: $gWidth;     
+        }
+    @for $i from 1 through $gCol {      
+        .col-#{$i} {         
+            width: 100% / $gCol * $i;   
+            }           
+        }   
+  }
